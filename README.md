@@ -33,6 +33,8 @@ There are layers upon layers of nested functions within the game of baseball. Yo
 4. Create a new branch by typing `git checkout -b <firstName-lastName>`
 5. Work on your branch, push commits and create PR as usual
 
+### Done!
+
 ### Task 2a - MVP code
 
 Find the file `index.js` and complete the tasks.
