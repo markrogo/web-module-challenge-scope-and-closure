@@ -28,6 +28,9 @@ function processFirstItem(stringList, callback) {
  * 
  * 1. What is the difference between counter1 and counter2?
  * 
+ * counter 1 will set the count to zero each time it's invokved because the variable count is declared inside the function
+ * counter 2 will keep the counter in the global variable count, which is declared outside but accessed inside
+ * 
  * 2. Which of the two uses a closure? How can you tell?
  * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
@@ -44,6 +47,8 @@ function counterMaker() {
 
 const counter1 = counterMaker();
 
+
+
 // counter2 code
 let count = 0;
 
@@ -51,16 +56,27 @@ function counter2() {
   return count++;
 }
 
+counter2();
+counter2();
+
+counter2();
+console.log(count); 
 
 /* Task 2: inning() 
 
 Write a function called `inning` that generates a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
+function inning() {
 
-    /*Code Here*/
-
+  let inningScore = Math.floor(Math.random() * 3 );
+   return inningScore;
 }
+
+// for (i = 1; i <= 10; i++) {
+//   console.log (`The score of inning ${i} is ${inning()}`);
+  
+// }
+
 
 /* Task 3: finalScore()
 
@@ -76,11 +92,37 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
-
-  /*Code Here*/
+function finalScore(callback, numInnings){
+  console.log ("A new game starts here");
+ let myFinalScore = {};
+  let awayScore = 0;
+  let homeScore = 0;
+  
+  for (let i = 1; i <= numInnings; i++) {
+    awayScore = awayScore + callback();
+    homeScore = homeScore + callback();
+    // console.log (awayScore);
+    // console.log (`inning ${i} away score is ${awayScore}`);
+    // console.log (homeScore);
+    // console.log (`inning ${i} home score is ${homeScore}`);
+    // console.log (`End of inning ${i}`)
+  }
+  
+  //  console.log (`the final score is away ${awayScore}, home ${homeScore}`);
+  myFinalScore.away = awayScore;
+  myFinalScore.home = homeScore;
+  return myFinalScore;
 
 }
+
+console.log(finalScore(inning, 9));
+
+
+// for (i = 1; i < 20; i++) {
+//   console.log(finalScore(inning, 9));
+
+// }
+
 
 /* Task 4: 
 
@@ -103,8 +145,36 @@ and returns the score at each pont in the game, like so:
 
 Final Score: 6 - 10 */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(callback, numInnings) {
+  console.log ("Here's another game inning by inning");
+  let myFinalScore = {};
+  let awayScore = 0;
+  let homeScore = 0;
+  
+  for (let i = 1; i <= numInnings; i++) {
+    awayScore = awayScore + callback();
+    homeScore = homeScore + callback();
+    switch (i) {
+      case 1:
+          console.log (`${i}st inning: ${awayScore} - ${homeScore}`);
+          break;
+      case 2:
+          console.log (`${i}nd inning: ${awayScore} - ${homeScore}`);
+          break;
+      case 3:
+          console.log (`${i}rd inning: ${awayScore} - ${homeScore}`);
+          break;
+      default:
+          console.log (`${i}th inning: ${awayScore} - ${homeScore}`);
+    }
+  }
+  
+   myFinalScore.away = awayScore;
+  myFinalScore.home = homeScore;
+
+  console.log (`The final score is Away ${awayScore} - Home ${homeScore}`)
+  return myFinalScore;
+
 }
 
-
+scoreboard (inning,9);
