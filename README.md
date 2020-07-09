@@ -75,8 +75,11 @@ a. Where is closure used in this code? How can you tell?
 b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
 
 // the value newRoll can change
+// but 
 
 c. What is the lexical scope of `newRoll`? 
+
+// the nested anonymous function, the wrapper function personalDice, and any global(s) that might exist
 
 ### Task 2c - Exit Ticket
 
@@ -103,6 +106,12 @@ console.log("b defined? " + (typeof b !== 'undefined'));
 2. Write a function that would allow you to do this using a closure. (This is another interview question we've seen before - when you're ready for answers, view an explanation [here](https://www.coderbyte.com/algorithm/3-common-javascript-closure-questions)).
 
 ```js
+
+function createBase (num) {
+  return function(addMe) {
+    return num + addMe;
+  }
+}
 var addSix = createBase(6);
 addSix(10); // returns 16
 addSix(21); // returns 27
