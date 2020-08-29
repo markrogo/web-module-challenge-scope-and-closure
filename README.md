@@ -33,6 +33,8 @@ There are layers upon layers of nested functions within the game of baseball. Yo
 4. Create a new branch by typing `git checkout -b <firstName-lastName>`
 5. Work on your branch, push commits and create PR as usual
 
+### Done!
+
 ### Task 2a - MVP code
 
 Find the file `index.js` and complete the tasks.
@@ -42,6 +44,10 @@ Find the file `index.js` and complete the tasks.
 Edit the `ReadMe` file with your answers.
 
 1. In your own words, define closure (1-2 sentences).
+
+// A closure in JS allows you to put a function inside a function and the nested function can use the variables of the parent or
+// any variables the parent can access. Basically the outer scope becomes usable by the nested function.
+
 2. Study the following code, then answer the questions below.
 
 ```js
@@ -63,8 +69,17 @@ dansRoll();
 ```
 
 a. Where is closure used in this code? How can you tell?
+
+// the nested anonymous function gains access to the parent personalDice()
+
 b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
+
+// the value newRoll can change
+// but 
+
 c. What is the lexical scope of `newRoll`? 
+
+// the nested anonymous function, the wrapper function personalDice, and any global(s) that might exist
 
 ### Task 2c - Exit Ticket
 
@@ -91,6 +106,12 @@ console.log("b defined? " + (typeof b !== 'undefined'));
 2. Write a function that would allow you to do this using a closure. (This is another interview question we've seen before - when you're ready for answers, view an explanation [here](https://www.coderbyte.com/algorithm/3-common-javascript-closure-questions)).
 
 ```js
+
+function createBase (num) {
+  return function(addMe) {
+    return num + addMe;
+  }
+}
 var addSix = createBase(6);
 addSix(10); // returns 16
 addSix(21); // returns 27
